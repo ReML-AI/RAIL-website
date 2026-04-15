@@ -91,9 +91,9 @@ export const groups: ResearchGroup[] = [
       { name: "Dr Haseeb Younis", photo: "/images/team/haseeb-younis.jpg" },
       { name: "Muhammad Azeem", photo: "/images/team/muhammad-azeem.jpg" },
       { name: "My Nguyen", photo: "/images/team/my-nguyen.jpg" },
-      { name: "Nguyet Hang", photo: null },
-      { name: "Vu Xinggang Ji", photo: "/images/team/vu-xinggang-ji.jpg" },
-      { name: "Truong Hoang Truong Pham", photo: "/images/team/truong-hoang-truong-pham.jpg" },
+      { name: "Hang Vu", photo: null },
+      { name: "Xinggang Ji", photo: "/images/team/vu-xinggang-ji.jpg" },
+      { name: "Truong Hoang", photo: "/images/team/truong-hoang-truong-pham.jpg" },
     ],
   },
 ];
