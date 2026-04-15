@@ -57,7 +57,7 @@ export const groups: ResearchGroup[] = [
       { name: "Hoang Quoc Viet Pham", photo: "/images/team/hoang-quoc-viet-pham.jpg" },
       { name: "Daniella Traynor", photo: "/images/team/daniella-traynor.jpg" },
       { name: "Duc Luu Le", photo: "/images/team/duc-luu-le.png" },
-      { name: "Mai Anh Pham", photo: "/images/team/mai-anh-pham.jpg" },
+      { name: "Mai Anh Pham", photo: "/images/team/IMG_5252 - Mai Anh Pham (1).png" },
     ],
   },
   {
