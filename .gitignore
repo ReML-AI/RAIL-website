@@ -54,8 +54,6 @@ next-env.d.ts
 # ucc web
 ucc_web/
 
-# ad-hoc screenshots / Playwright output
+# ad-hoc screenshots / Playwright output at repo root
 .playwright-mcp/
-audit-*.png
-verify-*.png
-rail-*.png
+/*.png
