@@ -1,0 +1,10 @@
+# Cloudflare Workers config — deploys the Next.js static export as a Worker with Static Assets.
+# Build command (run before `wrangler deploy`): npm run build
+# That produces ./out, which this file uploads.
+
+name = "rail-web"
+compatibility_date = "2025-01-01"
+
+[assets]
+directory = "./out"
+not_found_handling = "404-page"

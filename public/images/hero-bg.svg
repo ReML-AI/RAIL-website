@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAFBFC"/>
+      <stop offset="100%" stop-color="#EEF1F5"/>
+    </linearGradient>
+    <linearGradient id="accent1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#169B62" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#FF883E" stop-opacity="0.03"/>
+    </linearGradient>
+    <linearGradient id="accent2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6CBF8A" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#169B62" stop-opacity="0.02"/>
+    </linearGradient>
+  </defs>
+  <rect width="1440" height="600" fill="url(#bg)"/>
+  <!-- Large decorative circles -->
+  <circle cx="1200" cy="150" r="200" fill="url(#accent1)"/>
+  <circle cx="1300" cy="400" r="150" fill="url(#accent2)"/>
+  <circle cx="200" cy="500" r="120" fill="url(#accent1)"/>
+  <!-- Network dots and lines -->
+  <g opacity="0.06" stroke="#169B62" stroke-width="1" fill="none">
+    <line x1="900" y1="100" x2="1050" y2="200"/>
+    <line x1="1050" y1="200" x2="1150" y2="150"/>
+    <line x1="1050" y1="200" x2="1100" y2="350"/>
+    <line x1="1100" y1="350" x2="1250" y2="300"/>
+    <line x1="1150" y1="150" x2="1300" y2="200"/>
+    <line x1="1250" y1="300" x2="1350" y2="250"/>
+  </g>
+  <g fill="#169B62" opacity="0.08">
+    <circle cx="900" cy="100" r="4"/>
+    <circle cx="1050" cy="200" r="5"/>
+    <circle cx="1150" cy="150" r="4"/>
+    <circle cx="1100" cy="350" r="5"/>
+    <circle cx="1250" cy="300" r="4"/>
+    <circle cx="1300" cy="200" r="4"/>
+    <circle cx="1350" cy="250" r="3"/>
+  </g>
+  <!-- Subtle grid -->
+  <g stroke="#169B62" stroke-width="0.5" opacity="0.03">
+    <line x1="0" y1="150" x2="1440" y2="150"/>
+    <line x1="0" y1="300" x2="1440" y2="300"/>
+    <line x1="0" y1="450" x2="1440" y2="450"/>
+    <line x1="360" y1="0" x2="360" y2="600"/>
+    <line x1="720" y1="0" x2="720" y2="600"/>
+    <line x1="1080" y1="0" x2="1080" y2="600"/>
+  </g>
+</svg>
