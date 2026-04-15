@@ -6,7 +6,7 @@ import { director, groups, type TeamMember } from "@/data/team";
 
 function getInitials(name: string): string {
   return name
-    .replace(/^(Dr|Prof|A\.\s*Prof|New)\s+/i, "")
+    .replace(/^(Dr|Prof|A\/Prof|New)\s+/i, "")
     .split(/[\s_]+/)
     .filter(Boolean)
     .slice(0, 2)

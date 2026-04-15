@@ -17,7 +17,7 @@ export type ResearchGroup = {
 
 export const director: TeamMember & { title: string } = {
   name: "Harry Nguyen",
-  title: "A. Prof",
+  title: "A/Prof",
   photo: "/images/team/harry-nguyen.png",
 };
 
