@@ -1,20 +1,16 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "RAIL - Reliable AI Lab",
+    default: "RAIL · Reliable AI Lab",
     template: "%s | RAIL",
   },
   description:
@@ -29,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-sans text-dark antialiased`}
+        className={`${inter.variable} bg-white text-dark antialiased`}
       >
         {children}
       </body>

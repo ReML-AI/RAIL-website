@@ -50,3 +50,12 @@ notion.md
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# ucc web
+ucc_web/
+
+# ad-hoc screenshots / Playwright output
+.playwright-mcp/
+audit-*.png
+verify-*.png
+rail-*.png

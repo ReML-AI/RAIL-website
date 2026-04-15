@@ -2,8 +2,7 @@
 
 html {
   scroll-behavior: smooth;
-  /* Accounts for the sticky navbar (~68px) so anchor targets land
-     just below it, with section padding providing breathing room. */
+  /* Accounts for the sticky main nav so anchor targets land below */
   scroll-padding-top: 4.5rem;
 }
 
@@ -14,25 +13,39 @@ html {
 }
 
 @theme {
-  /* Ireland flag-inspired palette */
-  --color-primary-green: #169B62;
-  --color-primary-green-dark: #107048;
-  --color-primary-orange: #FF883E;
-  --color-primary-orange-dark: #E56F1F;
-  --color-primary-sage: #6CBF8A;
-  --color-dark: #1A1A2E;
-  --color-light-gray: #F5F6F8;
-  --color-border: #E2E5EB;
+  /* RAIL palette — green / orange / white (institutional) */
+  --color-primary-green: #0E6E4C;
+  --color-primary-green-dark: #0A5238;
+  --color-primary-green-darker: #073A28;
+  --color-primary-orange: #E8731C;
+  --color-primary-orange-dark: #C55C12;
 
-  --font-sans: "Inter", system-ui, sans-serif;
+  --color-dark: #1F242B;
+  --color-muted: #5B6570;
+  --color-light-gray: #F4F3EF;
+  --color-cream: #FAF8F4;
+  --color-border: #E3E2DD;
+
+  --font-sans: "Inter", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
   --font-mono: "JetBrains Mono", monospace;
 
-  --max-width-content: 1400px;
+  --max-width-content: 1440px;
+}
+
+/* Editorial headings use the serif */
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+}
+
+body {
+  font-family: var(--font-sans);
 }
 
 /* Rich text content styling */
 .prose h2 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 600;
   margin-top: 2rem;
   margin-bottom: 1rem;
@@ -53,11 +66,13 @@ html {
 }
 
 .prose a {
-  color: var(--color-primary-orange);
+  color: var(--color-primary-green-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .prose a:hover {
-  text-decoration: underline;
+  color: var(--color-primary-orange);
 }
 
 .prose ul,
@@ -72,43 +87,11 @@ html {
 }
 
 .prose img {
-  border-radius: 0.5rem;
   margin: 1.5rem 0;
 }
 
-/* Hero text entrance animation */
+/* Subtle entrance for the hero */
 @keyframes fadeSlideUp {
-  from { opacity: 0; transform: translate3d(0, 40px, 0); }
-  to { opacity: 1; transform: translate3d(0, 0, 0); }
-}
-
-/* Floating animation for decorative geometric shapes */
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(3deg); }
-}
-
-/* Card hover effects */
-.card-hover {
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.card-hover:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(255, 136, 62, 0.15), 0 4px 8px rgba(0, 0, 0, 0.06);
-}
-
-/* Image zoom on card hover */
-.card-hover .card-image {
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.card-hover:hover .card-image {
-  transform: scale(1.08);
-}
-
-/* Card link arrow animation */
-.card-hover .card-arrow {
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.card-hover:hover .card-arrow {
-  transform: translateX(4px);
+  from { opacity: 0; transform: translate3d(0, 24px, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
 }

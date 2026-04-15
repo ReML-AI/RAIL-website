@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 
 type AnchorNavItem = {
   label: string;
-  anchor: string; // e.g. "#about"
+  anchor: string;
 };
 
 const navItems: AnchorNavItem[] = [
@@ -24,39 +24,53 @@ export default function Navbar() {
   const pathname = usePathname();
 
   function buildHref(anchor: string): string {
-    // When not on the homepage, prefix with "/" so the browser navigates to
-    // the homepage and then scrolls to the section.
     return pathname === "/" ? anchor : `/${anchor}`;
   }
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-border bg-white/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-content items-center justify-between px-6 py-3">
-        {/* Logo */}
-        <Link href="/" className="flex-shrink-0">
+    <header className="sticky top-0 z-50 border-b border-border bg-white">
+      {/* Top accent strip */}
+      <div className="h-1 w-full bg-primary-orange" aria-hidden="true" />
+
+      {/* Main navigation */}
+      <div className="mx-auto flex max-w-content items-center justify-between gap-6 px-4 py-2.5 sm:px-6 lg:px-8 lg:py-3">
+        <Link href="/" className="flex flex-shrink-0 items-center gap-3">
           <Image
             src="/images/logo.png"
             alt="RAIL - Reliable AI Lab"
-            width={240}
-            height={107}
+            width={220}
+            height={96}
             priority
-            className="h-14 w-auto sm:h-16"
+            className="h-10 w-auto sm:h-14 lg:h-16"
           />
+          <span className="hidden border-l border-border pl-3 md:block">
+            <span className="block font-serif text-base font-semibold leading-tight text-dark lg:text-lg">
+              Reliable AI Lab
+            </span>
+            <span className="block text-[11px] text-muted lg:text-xs">
+              University College Cork
+            </span>
+          </span>
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-1 lg:flex">
           {navItems.map((item) => (
             <Link
               key={item.anchor}
               href={buildHref(item.anchor)}
-              className="group relative text-sm font-medium text-dark/70 transition-colors hover:text-primary-green-dark"
+              className="rounded-sm px-3 py-2 text-[15px] font-medium text-dark/80 transition-colors hover:bg-light-gray hover:text-primary-green-dark"
             >
               {item.label}
-              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-primary-orange transition-all duration-300 group-hover:w-full" />
             </Link>
           ))}
-        </div>
+          <a
+            href="mailto:info@reliableai.org"
+            className="ml-3 inline-flex items-center bg-primary-green px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-green-dark"
+          >
+            Get in touch
+          </a>
+        </nav>
 
         {/* Hamburger */}
         <button
@@ -64,7 +78,7 @@ export default function Navbar() {
           className="text-dark/70 transition-colors hover:text-primary-green-dark lg:hidden"
           aria-label="Toggle navigation"
         >
-          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {mobileOpen ? (
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             ) : (
@@ -76,19 +90,26 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="border-t border-border bg-white px-6 py-2 lg:hidden">
+        <div className="border-t border-border bg-white px-4 py-2 sm:px-6 lg:hidden">
           {navItems.map((item) => (
             <Link
               key={item.anchor}
               href={buildHref(item.anchor)}
               onClick={() => setMobileOpen(false)}
-              className="block rounded-lg px-2 py-3 text-base font-medium text-dark/80 transition-colors hover:bg-light-gray hover:text-primary-green-dark"
+              className="block border-b border-border/60 py-3 text-base font-medium text-dark/80 transition-colors last:border-0 hover:text-primary-green-dark"
             >
               {item.label}
             </Link>
           ))}
+          <a
+            href="mailto:info@reliableai.org"
+            onClick={() => setMobileOpen(false)}
+            className="mt-3 mb-4 block bg-primary-green px-4 py-3 text-center text-sm font-semibold text-white"
+          >
+            Get in touch
+          </a>
         </div>
       )}
-    </nav>
+    </header>
   );
 }

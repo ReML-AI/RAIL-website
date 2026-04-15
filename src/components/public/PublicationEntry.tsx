@@ -10,7 +10,8 @@ export default function PublicationEntry({ publication }: { publication: Publica
     <div className="group relative overflow-hidden border-b border-border last:border-0">
       {/* Background sweep from bottom to top on hover */}
       <div className="absolute inset-0 translate-y-full bg-primary-orange/5 transition-transform duration-500 ease-out group-hover:translate-y-0" />
-      <div className="relative px-4 py-5 -mx-4">
+      <div className="relative -mx-4 py-5 pl-8 pr-4 sm:pl-10">
+        <span className="pointer-events-none absolute left-4 top-6 h-6 w-1 bg-primary-orange/70 transition-all duration-300 group-hover:h-[calc(100%-2rem)] group-hover:bg-primary-orange" aria-hidden="true" />
         <h3 className="font-semibold text-dark group-hover:text-primary-green transition-colors duration-300">{publication.title}</h3>
         <p className="mt-1 text-sm text-dark/60">{publication.authors}</p>
         <p className="mt-0.5 text-sm text-dark/40">{publication.venue}, {publication.year}</p>

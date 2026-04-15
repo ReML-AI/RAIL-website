@@ -1,84 +1,134 @@
 "use client";
 
 import Link from "next/link";
-import { HeroShapes } from "./GeometricShapes";
+import { useEffect, useState } from "react";
+
+const slides = [
+  {
+    src: "/images/hero/UCC_campus.jpg",
+    alt: "UCC Quadrangle campus",
+    position: "center",
+  },
+  {
+    src: "/images/hero/WGB-outside.png",
+    alt: "Western Gateway Building exterior",
+    position: "center",
+  },
+  {
+    src: "/images/hero/wgb-outside2.png",
+    alt: "Western Gateway Building exterior view",
+    position: "center",
+  },
+] as const;
+
+const AUTOPLAY_MS = 6000;
 
 export default function Hero() {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % slides.length);
+    }, AUTOPLAY_MS);
+    return () => clearInterval(id);
+  }, [paused]);
+
   return (
     <section
-      className="relative overflow-hidden bg-light-gray px-6 py-20 lg:py-28"
-      style={{
-        backgroundImage: "url(/images/hero-bg.svg)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+      className="relative"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
     >
-      <HeroShapes />
-
-      <div className="relative mx-auto max-w-content">
-        <span
-          className="inline-flex items-center gap-2 rounded-full border border-primary-green/30 bg-white/70 px-3 py-1 text-xs font-medium uppercase tracking-wider text-primary-green-dark backdrop-blur"
-          style={{
-            opacity: 0,
-            animation: "fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards",
-          }}
-        >
-          <span className="h-1.5 w-1.5 rounded-full bg-primary-orange" />
-          Reliable AI Lab · University College Cork
-        </span>
-        <h1
-          className="mt-5 max-w-4xl text-4xl font-bold leading-[1.08] tracking-tight text-dark sm:text-5xl lg:text-6xl xl:text-7xl"
-          style={{
-            opacity: 0,
-            animation: "fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards",
-          }}
-        >
-          Building{" "}
-          <span
-            className="px-1"
+      <div className="relative h-[520px] w-full overflow-hidden md:h-[600px]">
+        {/* Slides with crossfade */}
+        {slides.map((slide, i) => (
+          <div
+            key={slide.src}
+            aria-hidden={i !== index}
+            className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out"
             style={{
-              backgroundImage:
-                "linear-gradient(to top, rgba(255, 136, 62, 0.4) 30%, transparent 30%)",
-              WebkitBoxDecorationBreak: "clone",
-              boxDecorationBreak: "clone",
+              backgroundImage: `url(${slide.src})`,
+              backgroundPosition: slide.position,
+              opacity: i === index ? 1 : 0,
             }}
-          >
-            Reliable AI
-          </span>{" "}
-          for a Trustworthy Future
-        </h1>
-        <p
-          className="mt-6 max-w-xl text-lg leading-relaxed text-dark/65"
-          style={{
-            opacity: 0,
-            animation: "fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards",
-          }}
-        >
-          RAIL advances research on trustworthy, explainable, and safe
-          artificial intelligence — bridging rigorous theory with real-world
-          impact across six specialised research groups.
-        </p>
-        <div
-          className="mt-9 flex flex-wrap gap-4"
-          style={{
-            opacity: 0,
-            animation: "fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards",
-          }}
-        >
-          <Link
-            href="#research"
-            className="inline-flex items-center gap-2 rounded-lg bg-primary-green px-7 py-3.5 text-base font-medium text-white shadow-sm transition-all hover:bg-primary-green-dark hover:shadow-md"
-          >
-            Explore Research
-            <span aria-hidden="true">→</span>
-          </Link>
-          <Link
-            href="#people"
-            className="inline-flex items-center gap-2 rounded-lg border border-dark/15 bg-white/60 px-7 py-3.5 text-base font-medium text-dark backdrop-blur transition-colors hover:border-primary-orange hover:text-primary-orange"
-          >
-            Meet Our Team
-          </Link>
+          />
+        ))}
+
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-dark/35" aria-hidden="true" />
+
+        {/* Overlay card */}
+        <div className="relative mx-auto flex h-full max-w-content items-end px-4 pb-20 sm:px-6 md:pb-24 lg:px-8">
+          <div className="max-w-xl bg-primary-green-darker/95 p-7 text-white shadow-xl sm:p-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-primary-orange">
+              Reliable AI Lab · University College Cork
+            </p>
+            <h1 className="mt-3 font-serif text-3xl font-semibold leading-tight sm:text-4xl md:text-[2.75rem]">
+              Building{" "}
+              <span className="relative inline-block text-primary-orange">
+                Reliable AI
+                <svg
+                  className="pointer-events-none absolute -bottom-1 left-0 w-full text-primary-orange"
+                  viewBox="0 0 200 8"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M2 5 C 40 1, 80 7, 120 3 S 190 5, 198 4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>{" "}
+              for a Trustworthy Future
+            </h1>
+            <p className="mt-4 text-base leading-relaxed text-white/85">
+              RAIL advances research on trustworthy, explainable, and safe
+              artificial intelligence, bridging rigorous theory with real-world
+              impact across six specialised research groups.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                href="#research"
+                className="group inline-flex items-center gap-2 bg-primary-orange px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-primary-orange-dark hover:gap-3"
+              >
+                Explore Research
+                <span aria-hidden="true">→</span>
+              </Link>
+              <Link
+                href="#people"
+                className="inline-flex items-center gap-2 border border-white/40 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+              >
+                Meet Our Team
+              </Link>
+            </div>
+          </div>
         </div>
+
+        {/* Slide dots */}
+        <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2">
+          {slides.map((slide, i) => (
+            <button
+              key={slide.src}
+              type="button"
+              onClick={() => setIndex(i)}
+              aria-label={`Show slide ${i + 1}: ${slide.alt}`}
+              aria-current={i === index}
+              className={`h-2.5 rounded-full transition-all duration-300 ${
+                i === index
+                  ? "w-8 bg-primary-orange"
+                  : "w-2.5 bg-white/60 hover:bg-white"
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Bottom orange accent bar */}
+        <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-primary-orange" aria-hidden="true" />
       </div>
     </section>
   );

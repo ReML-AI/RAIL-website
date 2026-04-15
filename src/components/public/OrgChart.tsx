@@ -4,6 +4,21 @@ import Image from "next/image";
 import { useState } from "react";
 import { director, groups, type TeamMember } from "@/data/team";
 
+// Theme colors (matches globals.css tokens)
+const COLOR_GREEN = "#0E6E4C";
+const COLOR_GREEN_DARK = "#0A5238";
+const COLOR_ORANGE = "#E8731C";
+const COLOR_ORANGE_DARK = "#C55C12";
+
+const GROUP_COLORS = [
+  COLOR_GREEN,
+  COLOR_ORANGE,
+  COLOR_GREEN_DARK,
+  COLOR_ORANGE_DARK,
+  COLOR_GREEN,
+  COLOR_ORANGE,
+];
+
 function getInitials(name: string): string {
   return name
     .replace(/^(Dr|Prof|A\/Prof|New)\s+/i, "")
@@ -18,7 +33,7 @@ function Avatar({
   person,
   sizeClass = "h-[72px] w-[72px]",
   hovered = false,
-  ringColor = "#169B62",
+  ringColor = COLOR_GREEN,
 }: {
   person: TeamMember;
   sizeClass?: string;
@@ -28,41 +43,39 @@ function Avatar({
   return (
     <div className={`relative shrink-0 ${sizeClass}`}>
       <svg
-        className="absolute inset-0 z-10 transition-transform duration-500"
+        className="absolute inset-0 z-10"
         viewBox="0 0 100 100"
         fill="none"
         aria-hidden="true"
-        style={{ transform: hovered ? "rotate(360deg)" : "rotate(0deg)" }}
       >
         <circle
           cx="50"
           cy="50"
           r="47"
           stroke={ringColor}
-          strokeWidth="3.5"
+          strokeWidth={hovered ? 3 : 2}
           strokeLinecap="round"
-          className="transition-all duration-500"
+          className="transition-all duration-300"
           style={{
-            strokeDasharray: hovered ? "295 0" : "220 75",
-            filter: hovered ? `drop-shadow(0 0 4px ${ringColor}50)` : "none",
+            filter: hovered ? `drop-shadow(0 0 6px ${ringColor}60)` : "none",
           }}
         />
       </svg>
 
       <div
-        className="absolute inset-[3px] overflow-hidden rounded-full transition-transform duration-500"
-        style={{ transform: hovered ? "scale(1.05)" : "scale(1)" }}
+        className="absolute inset-[3px] overflow-hidden rounded-full transition-transform duration-300"
+        style={{ transform: hovered ? "scale(1.04)" : "scale(1)" }}
       >
         {person.photo ? (
           <Image
             src={person.photo}
             alt={person.name}
             fill
-            sizes="110px"
+            sizes="150px"
             className="object-cover"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-light-gray text-base font-semibold text-dark/50">
+          <div className="flex h-full w-full items-center justify-center bg-light-gray font-serif text-xl font-semibold text-muted">
             {getInitials(person.name)}
           </div>
         )}
@@ -73,41 +86,29 @@ function Avatar({
 
 function MemberCard({
   person,
-  ringColor,
+  accentColor,
 }: {
   person: TeamMember;
-  ringColor: string;
+  accentColor: string;
 }) {
   const [hovered, setHovered] = useState(false);
 
   return (
     <div
-      className="group flex flex-col items-center gap-1.5 transition-all duration-300"
-      style={{ transform: hovered ? "translateY(-4px)" : "translateY(0)" }}
+      className="group flex flex-col items-center gap-2 transition-all duration-300"
+      style={{ transform: hovered ? "translateY(-3px)" : "translateY(0)" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className="relative">
-        <Avatar
-          person={person}
-          sizeClass="h-[56px] w-[56px] sm:h-[72px] sm:w-[72px]"
-          hovered={hovered}
-          ringColor={ringColor}
-        />
-        <div
-          className="absolute inset-0 -z-10 rounded-full blur-xl transition-opacity duration-500"
-          style={{
-            backgroundColor: ringColor,
-            opacity: hovered ? 0.15 : 0,
-          }}
-        />
-      </div>
+      <Avatar
+        person={person}
+        sizeClass="h-[80px] w-[80px] sm:h-[96px] sm:w-[96px]"
+        hovered={hovered}
+        ringColor={accentColor}
+      />
       <span
-        className="inline-block max-w-[7.5rem] rounded-full px-2.5 py-1 text-center text-[10.5px] font-medium leading-tight text-white transition-all duration-300 sm:max-w-none sm:whitespace-nowrap sm:px-3.5 sm:py-1.5 sm:text-[13px]"
-        style={{
-          backgroundColor: hovered ? ringColor : "#107048",
-          boxShadow: hovered ? `0 4px 12px ${ringColor}40` : "none",
-        }}
+        className="max-w-[9rem] text-center font-serif text-[14px] font-medium leading-tight text-dark transition-colors duration-300 sm:text-[15px]"
+        style={{ color: hovered ? accentColor : undefined }}
       >
         {person.name}
       </span>
@@ -120,43 +121,33 @@ function DirectorCard() {
 
   return (
     <div
-      className="flex flex-col items-center gap-2.5"
+      className="flex flex-col items-center gap-3"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className="relative">
-        <Avatar
-          person={director}
-          sizeClass="h-[88px] w-[88px] sm:h-[110px] sm:w-[110px]"
-          hovered={hovered}
-        />
-        <div
-          className="absolute inset-0 -z-10 rounded-full blur-2xl transition-opacity duration-500"
-          style={{ backgroundColor: "#169B62", opacity: hovered ? 0.2 : 0 }}
-        />
-      </div>
-      <span
-        className="inline-block rounded-full px-5 py-1.5 text-sm font-semibold text-white transition-all duration-300 sm:px-6 sm:py-2 sm:text-base"
+      <Avatar
+        person={director}
+        sizeClass="h-[120px] w-[120px] sm:h-[150px] sm:w-[150px]"
+        hovered={hovered}
+        ringColor={COLOR_GREEN_DARK}
+      />
+      <div
+        className="px-5 py-2 text-center transition-all duration-300"
         style={{
-          backgroundColor: hovered ? "#169B62" : "#107048",
-          boxShadow: hovered ? "0 6px 20px rgba(22, 155, 98, 0.35)" : "none",
-          transform: hovered ? "scale(1.05)" : "scale(1)",
+          backgroundColor: hovered ? COLOR_GREEN : COLOR_GREEN_DARK,
+          boxShadow: hovered ? "0 6px 16px rgba(14, 110, 76, 0.3)" : "none",
         }}
       >
-        {director.title} {director.name}
-      </span>
+        <p className="text-[11px] font-medium uppercase tracking-wider text-white/80">
+          Director
+        </p>
+        <p className="font-serif text-base font-semibold text-white sm:text-lg">
+          {director.title} {director.name}
+        </p>
+      </div>
     </div>
   );
 }
-
-const GROUP_RING_COLORS = [
-  "#169B62",
-  "#FF883E",
-  "#6CBF8A",
-  "#107048",
-  "#E56F1F",
-  "#169B62",
-];
 
 function GroupColumn({
   group,
@@ -165,47 +156,48 @@ function GroupColumn({
   group: (typeof groups)[0];
   colorIndex: number;
 }) {
-  const [headerHovered, setHeaderHovered] = useState(false);
-  const ringColor = GROUP_RING_COLORS[colorIndex % GROUP_RING_COLORS.length];
+  const [hovered, setHovered] = useState(false);
+  const accentColor = GROUP_COLORS[colorIndex % GROUP_COLORS.length];
 
   return (
     <div className="flex flex-col items-center gap-4">
-      {/* Group header pill — fixed height on desktop so all columns align */}
+      {/* Group header — squared block */}
       <div
-        className="flex w-full cursor-default items-center justify-center rounded-xl px-3 py-3 text-center transition-all duration-300 lg:min-h-[5rem] lg:py-0"
-        onMouseEnter={() => setHeaderHovered(true)}
-        onMouseLeave={() => setHeaderHovered(false)}
+        className="w-full cursor-default px-3 py-3 text-center transition-all duration-300 lg:min-h-[5rem] lg:flex lg:items-center lg:justify-center"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
         style={{
-          backgroundColor: headerHovered ? ringColor : "#107048",
-          boxShadow: headerHovered ? `0 8px 24px ${ringColor}40` : "none",
-          transform: headerHovered ? "scale(1.03)" : "scale(1)",
+          backgroundColor: accentColor,
+          transform: hovered ? "translateY(-2px)" : "translateY(0)",
+          boxShadow: hovered ? `0 8px 20px ${accentColor}40` : "none",
         }}
       >
         <div>
-          <p className="text-sm font-bold leading-tight text-white">{group.name}</p>
-          <p className="mt-0.5 text-[11px] font-medium uppercase tracking-wider text-white/70">
+          <p className="font-serif text-sm font-semibold leading-tight text-white sm:text-base">
+            {group.name}
+          </p>
+          <p className="mt-1 text-[10.5px] font-medium uppercase tracking-wider text-white/80">
             ({group.tag})
           </p>
         </div>
       </div>
 
-      {/* Connector — hidden on mobile */}
+      {/* Connector — desktop only */}
       <div
-        className="hidden h-6 w-0.5 transition-all duration-500 lg:block"
+        className="hidden h-6 w-px transition-all duration-300 lg:block"
         style={{
-          backgroundColor: ringColor,
-          opacity: headerHovered ? 0.8 : 0.4,
-          boxShadow: headerHovered ? `0 0 6px ${ringColor}` : "none",
+          backgroundColor: accentColor,
+          opacity: hovered ? 0.9 : 0.4,
         }}
       />
 
-      {/* Members: horizontal wrap on mobile, vertical column on desktop */}
+      {/* Members */}
       <div className="flex flex-wrap justify-center gap-4 lg:flex-col lg:items-center lg:gap-5">
         {group.members.map((member) => (
           <MemberCard
             key={member.name}
             person={member}
-            ringColor={ringColor}
+            accentColor={accentColor}
           />
         ))}
       </div>
@@ -216,19 +208,20 @@ function GroupColumn({
 export default function OrgChart() {
   return (
     <div className="flex w-full flex-col items-center overflow-hidden">
-      {/* Top bar */}
-      <div className="relative mb-3 flex w-full flex-col items-center gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-0">
+      {/* Header strip */}
+      <div className="relative mb-6 flex w-full flex-col items-center justify-center gap-2 sm:flex-row sm:justify-between">
         <div className="shrink-0">
           <Image
             src="/images/logo.png"
             alt="RAIL"
-            width={120}
-            height={40}
-            className="h-10 w-auto sm:h-14"
+            width={220}
+            height={80}
+            className="h-14 w-auto sm:h-20"
           />
         </div>
-        <p className="text-center text-sm font-semibold tracking-tight text-primary-orange sm:text-right sm:text-xl lg:text-2xl">
-          Reliable Artificial Intelligence lab (RAIL)
+        <p className="text-center font-serif text-base font-semibold text-dark sm:text-right sm:text-lg lg:text-xl">
+          Reliable Artificial Intelligence Lab{" "}
+          <span className="text-primary-orange">(RAIL)</span>
         </p>
       </div>
 
@@ -236,16 +229,16 @@ export default function OrgChart() {
       <DirectorCard />
 
       {/* Connector tree */}
-      <div className="flex flex-col items-center">
-        <div className="h-8 w-0.5 bg-primary-green/40" />
+      <div className="flex w-full flex-col items-center">
+        <div className="h-8 w-px bg-primary-green/40" />
         <div className="relative hidden w-full lg:block">
           <div
-            className="mx-auto h-0.5 bg-primary-green/35"
+            className="mx-auto h-px bg-primary-green/35"
             style={{ width: "85%" }}
           />
           <div className="absolute left-[7.5%] right-[7.5%] top-0 flex justify-between">
             {groups.map((g) => (
-              <div key={g.tag} className="h-6 w-0.5 bg-primary-green/35" />
+              <div key={g.tag} className="h-6 w-px bg-primary-green/35" />
             ))}
           </div>
         </div>
@@ -258,8 +251,9 @@ export default function OrgChart() {
         ))}
       </div>
 
-      <p className="mt-8 text-center text-xs text-dark/30">
-        {groups.reduce((sum, g) => sum + g.members.length, 1)} members · {groups.length} research groups
+      <p className="mt-10 text-center text-xs text-muted">
+        {groups.reduce((sum, g) => sum + g.members.length, 1)} members ·{" "}
+        {groups.length} research groups
       </p>
     </div>
   );
