@@ -27,7 +27,7 @@ export const groups: ResearchGroup[] = [
     tag: "SPATIAL",
     name: "Spatial Intelligence",
     members: [
-      { name: "New PhD", photo: null },
+      { name: "Incoming PD", photo: null },
       { name: "Vu Xuan Dinh", photo: "/images/team/vu-xuan-dinh.png" },
       { name: "Gia Tuan Nghia Nguyen", photo: "/images/team/gia-tuan-nghia-nguyen.jpg" },
       { name: "Manh Thang Tran", photo: "/images/team/manh-thang-tran.jpg" },
@@ -52,7 +52,7 @@ export const groups: ResearchGroup[] = [
     tag: "LING",
     name: "Linguistic Intelligence",
     members: [
-      { name: "Khanh-Tung Tran_PhD", photo: "/images/team/khanh-tung-tran.jpg" },
+      { name: "Khanh-Tung Tran", photo: "/images/team/khanh-tung-tran.jpg" },
       { name: "Thai Hoa Tran", photo: "/images/team/thai-hoa-tran.jpg" },
       { name: "Hoang Quoc Viet Pham", photo: "/images/team/hoang-quoc-viet-pham.jpg" },
       { name: "Daniella Traynor", photo: "/images/team/daniella-traynor.jpg" },
@@ -81,7 +81,7 @@ export const groups: ResearchGroup[] = [
       { name: "Robert Dao", photo: "/images/team/robert-dao.jpg" },
       { name: "Kinza Salim", photo: "/images/team/kinza-salim.jpg" },
       { name: "Le Lai Hoang", photo: "/images/team/le-lai-hoang.jpg" },
-      { name: "New RA", photo: null },
+      { name: "Incoming RA", photo: null },
     ],
   },
   {
