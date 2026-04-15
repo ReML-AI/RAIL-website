@@ -41,7 +41,7 @@ export default function Navbar() {
             width={220}
             height={96}
             priority
-            className="h-10 w-auto sm:h-14 lg:h-16"
+            className="h-12 w-auto sm:h-16 lg:h-20"
           />
           <span className="hidden border-l border-border pl-3 md:block">
             <span className="block font-serif text-base font-semibold leading-tight text-dark lg:text-lg">
