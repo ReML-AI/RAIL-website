@@ -41,7 +41,7 @@ export default function Hero() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="relative h-[520px] w-full overflow-hidden md:h-[600px]">
+      <div className="relative min-h-[520px] w-full overflow-hidden sm:h-[560px] md:h-[600px]">
         {/* Slides with crossfade */}
         {slides.map((slide, i) => (
           <div
@@ -60,12 +60,12 @@ export default function Hero() {
         <div className="absolute inset-0 bg-dark/35" aria-hidden="true" />
 
         {/* Overlay card */}
-        <div className="relative mx-auto flex h-full max-w-content items-end px-4 pb-20 sm:px-6 md:pb-24 lg:px-8">
-          <div className="max-w-xl bg-primary-green-darker/95 p-7 text-white shadow-xl sm:p-10">
+        <div className="relative mx-auto flex max-w-content items-end px-4 pb-12 pt-6 sm:h-full sm:px-6 sm:pb-20 sm:pt-0 md:pb-24 lg:px-8">
+          <div className="max-w-xl bg-primary-green-darker/95 p-5 text-white shadow-xl sm:p-7 md:p-10">
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-primary-orange">
               Reliable AI Lab · University College Cork
             </p>
-            <h1 className="mt-3 font-serif text-3xl font-semibold leading-tight sm:text-4xl md:text-[2.75rem]">
+            <h1 className="mt-2 font-serif text-2xl font-semibold leading-tight sm:mt-3 sm:text-3xl md:text-[2.75rem]">
               Building{" "}
               <span className="relative inline-block text-primary-orange">
                 Reliable AI
@@ -86,7 +86,7 @@ export default function Hero() {
               </span>{" "}
               for a Trustworthy Future
             </h1>
-            <p className="mt-4 text-base leading-relaxed text-white/85">
+            <p className="mt-3 text-sm leading-relaxed text-white/85 sm:mt-4 sm:text-base">
               RAIL advances research on trustworthy, explainable, and safe
               artificial intelligence, bridging rigorous theory with real-world
               impact across six specialised research groups.
