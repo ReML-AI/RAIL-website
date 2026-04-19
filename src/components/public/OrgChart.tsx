@@ -163,7 +163,7 @@ function GroupColumn({
     <div className="flex flex-col items-center gap-4">
       {/* Group header — squared block */}
       <div
-        className="w-full cursor-default px-3 py-3 text-center transition-all duration-300 lg:min-h-[5rem] lg:flex lg:items-center lg:justify-center"
+        className="flex w-full cursor-default items-center justify-center px-3 py-3 text-center transition-all duration-300 lg:h-24"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         style={{
