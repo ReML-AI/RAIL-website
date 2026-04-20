@@ -14,7 +14,7 @@ export default function PublicationEntry({ publication }: { publication: Publica
         <span className="pointer-events-none absolute left-4 top-6 h-6 w-1 bg-primary-orange/70 transition-all duration-300 group-hover:h-[calc(100%-2rem)] group-hover:bg-primary-orange" aria-hidden="true" />
         <h3 className="font-semibold text-dark group-hover:text-primary-green transition-colors duration-300">{publication.title}</h3>
         <p className="mt-1 text-sm text-dark/60">{publication.authors}</p>
-        <p className="mt-0.5 text-sm text-dark/40">{publication.venue}, {publication.year}</p>
+        <p className="mt-0.5 text-sm text-dark/40">{publication.venue}</p>
         <div className="mt-2 flex flex-wrap gap-3">
           {publication.doi_url && (
             <a href={publication.doi_url} target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-primary-orange hover:underline">DOI</a>

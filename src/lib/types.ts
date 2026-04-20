@@ -20,10 +20,12 @@ export type Project = {
 
 export type Publication = {
   id: string;
+  category: string;
   title: string;
   authors: string;
   year: number;
   venue: string;
+  location: string | null;
   doi_url: string | null;
   pdf_url: string | null;
   bibtex: string | null;
