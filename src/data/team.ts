@@ -31,8 +31,6 @@ export const groups: ResearchGroup[] = [
       { name: "Vu Xuan Dinh", photo: "/images/team/vu-xuan-dinh.png" },
       { name: "Gia Tuan Nghia Nguyen", photo: "/images/team/gia-tuan-nghia-nguyen.jpg" },
       { name: "Manh Thang Tran", photo: "/images/team/manh-thang-tran.jpg" },
-      { name: "Uyen Dinh", photo: "/images/team/uyen-dinh.png" },
-      { name: "Selina Vu", photo: "/images/team/selina-vu.jpg" },
     ],
   },
   {
@@ -43,7 +41,8 @@ export const groups: ResearchGroup[] = [
       { name: "Minh-Quy Le", photo: "/images/team/minh-quy-le.jpg" },
       { name: "Khanh-Vinh Tran", photo: "/images/team/khanh-vinh-tran.png" },
       { name: "Minh Quang Nguyen", photo: "/images/team/minh-quang-nguyen.jpg" },
-      { name: "Glib Tkachenko", photo: "/images/team/glib-tkachenko.jpg" },
+      { name: "Uyen Dinh", photo: "/images/team/uyen-dinh.png" },
+      { name: "Selina Vu", photo: "/images/team/selina-vu.jpg" },
     ],
   },
   {
@@ -92,6 +91,7 @@ export const groups: ResearchGroup[] = [
       { name: "Hang Vu", photo: null },
       { name: "Xinggang Ji", photo: "/images/team/vu-xinggang-ji.jpg" },
       { name: "Truong Hoang", photo: "/images/team/truong-hoang-truong-pham.jpg" },
+      { name: "Glib Tkachenko", photo: "/images/team/glib-tkachenko.jpg" },
     ],
   },
 ];
