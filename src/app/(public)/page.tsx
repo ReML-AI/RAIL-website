@@ -94,14 +94,6 @@ const quickLinks: {
 export default function HomePage() {
   const researchAreas = [...allResearchAreas].sort((a, b) => a.order - b.order);
   const publications = allPublications;
-  const publicationsByCategory = publications.reduce<
-    { category: string; items: typeof publications }[]
-  >((acc, pub) => {
-    const existing = acc.find((g) => g.category === pub.category);
-    if (existing) existing.items.push(pub);
-    else acc.push({ category: pub.category, items: [pub] });
-    return acc;
-  }, []);
   const projects = allProjects;
   const featuredProject = projects[0];
 
@@ -348,18 +340,9 @@ export default function HomePage() {
             </ScrollReveal>
 
             <ScrollReveal delay={100}>
-              <div className="flex flex-col gap-10">
-                {publicationsByCategory.map((group) => (
-                  <div key={group.category}>
-                    <h3 className="mb-3 font-serif text-lg font-semibold italic text-primary-green-dark md:text-xl">
-                      {group.category}
-                    </h3>
-                    <div className="border-t border-border bg-white">
-                      {group.items.map((pub) => (
-                        <PublicationEntry key={pub.id} publication={pub} />
-                      ))}
-                    </div>
-                  </div>
+              <div className="border-t border-border bg-white">
+                {publications.map((pub) => (
+                  <PublicationEntry key={pub.id} publication={pub} />
                 ))}
               </div>
             </ScrollReveal>
