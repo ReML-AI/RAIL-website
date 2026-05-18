@@ -131,6 +131,22 @@ export const publications: Publication[] = [
     created_at: "2026-05-11T00:00:00.000Z",
   },
   {
+    id: "lrec-coling-2026-vivid",
+    category: "NLP / LLM Benchmarks (LREC-COLING 2026)",
+    title:
+      "VIVID: A Culturally Grounded Benchmark Exposing the Figurative Language Gap in Vietnamese NLP",
+    authors:
+      "Tu Tran Do, Nhat Ngoc Nguyen, Tung Khanh Tran, Harry Nguyen, Tu Minh Phuong, Long Hoang Dang",
+    year: 2026,
+    venue: "LREC-COLING 2026 · Palma de Mallorca, Spain · May 11-16, 2026",
+    location: "Palma de Mallorca, Spain",
+    doi_url: null,
+    pdf_url: null,
+    bibtex: null,
+    abstract: null,
+    created_at: "2026-05-11T00:00:00.000Z",
+  },
+  {
     id: "minds-and-machines-2026-controllability-agentic-ai",
     category: "Journal",
     title: "On Controllability in Agentic AI: A Survey",
