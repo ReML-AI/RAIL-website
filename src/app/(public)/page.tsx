@@ -5,7 +5,7 @@ import ScrollReveal from "@/components/public/ScrollReveal";
 import StaggerChildren from "@/components/public/StaggerChildren";
 import Image from "next/image";
 import Link from "next/link";
-import PublicationEntry from "@/components/public/PublicationEntry";
+import PublicationsList from "@/components/public/PublicationsList";
 import { researchAreas as allResearchAreas } from "@/data/research";
 import { publications as allPublications } from "@/data/publications";
 import { projects as allProjects } from "@/data/projects";
@@ -340,11 +340,7 @@ export default function HomePage() {
             </ScrollReveal>
 
             <ScrollReveal delay={100}>
-              <div className="border-t border-border bg-white">
-                {publications.map((pub) => (
-                  <PublicationEntry key={pub.id} publication={pub} />
-                ))}
-              </div>
+              <PublicationsList publications={publications} />
             </ScrollReveal>
           </div>
         </section>

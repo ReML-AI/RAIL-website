@@ -43,6 +43,8 @@ supabase/.temp/
 # internal working docs
 content-request.md
 notion.md
+add_papers.md
+papers_2.md
 
 # vercel
 .vercel
