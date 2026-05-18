@@ -293,6 +293,20 @@ export const publications: Publication[] = [
 
   // === 2024 ===
   {
+    id: "nca-2024-neupronet",
+    category: "Journal",
+    title: "NeuProNet: Neural Profiling Networks for Sound Classification",
+    authors: "Khanh-Tung Tran, X. S. Vu, D. K. Nguyen, Harry Nguyen",
+    year: 2024,
+    venue: "Neural Computing and Applications · 2024",
+    location: null,
+    doi_url: null,
+    pdf_url: null,
+    bibtex: null,
+    abstract: null,
+    created_at: "2024-06-01T00:00:00.000Z",
+  },
+  {
     id: "ai-open-2024-wave2graph",
     category: "Journal",
     title:
