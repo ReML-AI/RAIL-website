@@ -304,10 +304,10 @@ export default function HomePage() {
           <ScrollReveal>
             <div className="mb-10">
               <p className="text-xs font-semibold uppercase tracking-wider text-primary-orange-dark">
-                Projects
+                Built by RAIL
               </p>
               <h2 className="mt-2 font-serif text-3xl font-semibold text-dark md:text-4xl">
-                Flagship initiatives
+                Our projects
               </h2>
             </div>
           </ScrollReveal>
@@ -391,10 +391,7 @@ function ProjectCard({ project }: { project: (typeof allProjects)[number] }) {
       </div>
 
       <div className="flex flex-1 flex-col bg-primary-green-darker p-8 text-white">
-        <span className="text-xs font-semibold uppercase tracking-wider text-primary-orange">
-          Flagship initiative
-        </span>
-        <h3 className="mt-2 font-serif text-2xl font-semibold leading-snug md:text-3xl">
+        <h3 className="font-serif text-2xl font-semibold leading-snug md:text-3xl">
           {project.title}
         </h3>
         <p className="mt-4 flex-1 text-sm leading-relaxed text-white/85">
