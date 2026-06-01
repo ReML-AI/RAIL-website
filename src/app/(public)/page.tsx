@@ -95,7 +95,6 @@ export default function HomePage() {
   const researchAreas = [...allResearchAreas].sort((a, b) => a.order - b.order);
   const publications = allPublications;
   const projects = allProjects;
-  const featuredProject = projects[0];
 
   return (
     <>
@@ -313,9 +312,11 @@ export default function HomePage() {
             </div>
           </ScrollReveal>
 
-          <ScrollReveal delay={100}>
-            {featuredProject && <ProjectFeature project={featuredProject} />}
-          </ScrollReveal>
+          <StaggerChildren className="grid gap-6 md:grid-cols-2" staggerDelay={90}>
+            {projects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </StaggerChildren>
         </div>
       </section>
 
@@ -370,44 +371,41 @@ export default function HomePage() {
   );
 }
 
-function ProjectFeature({ project }: { project: (typeof allProjects)[number] }) {
-  const externalUrl =
-    project.slug === "ai-for-ireland" ? "https://aiforireland.org/" : null;
-
+function ProjectCard({ project }: { project: (typeof allProjects)[number] }) {
   return (
-    <article className="group grid overflow-hidden border border-border bg-white transition-all duration-300 hover:border-primary-green hover:shadow-xl md:grid-cols-[1.1fr_1fr]">
-      <div className="flex min-h-[260px] items-center justify-center bg-light-gray p-8 md:p-10">
+    <article className="group flex h-full flex-col overflow-hidden border border-border bg-white transition-all duration-300 hover:border-primary-green hover:shadow-xl">
+      <div className="flex h-44 items-center justify-center bg-light-gray px-8">
         {project.image_url ? (
           <Image
             src={project.image_url}
             alt={project.title}
-            width={420}
-            height={260}
-            className="h-auto w-full max-w-sm object-contain transition-transform duration-500 group-hover:scale-105"
+            width={320}
+            height={160}
+            className="h-auto w-full max-w-xs object-contain transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
-          <span className="font-serif text-4xl font-semibold leading-tight text-primary-green-dark md:text-5xl">
+          <span className="font-serif text-3xl font-semibold leading-tight text-primary-green-dark md:text-4xl">
             {project.title}
           </span>
         )}
       </div>
 
-      <div className="relative bg-primary-green-darker p-8 text-white md:p-12">
+      <div className="flex flex-1 flex-col bg-primary-green-darker p-8 text-white">
         <span className="text-xs font-semibold uppercase tracking-wider text-primary-orange">
           Flagship initiative
         </span>
-        <h3 className="mt-3 font-serif text-3xl font-semibold leading-tight md:text-4xl">
+        <h3 className="mt-2 font-serif text-2xl font-semibold leading-snug md:text-3xl">
           {project.title}
         </h3>
-        <p className="mt-5 text-base leading-relaxed text-white/85">
+        <p className="mt-4 flex-1 text-sm leading-relaxed text-white/85">
           {project.description}
         </p>
-        {externalUrl && (
+        {project.external_url && (
           <a
-            href={externalUrl}
+            href={project.external_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-7 inline-flex items-center gap-2 bg-primary-orange px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-primary-orange-dark hover:gap-3"
+            className="mt-6 inline-flex items-center gap-2 self-start bg-primary-orange px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-primary-orange-dark hover:gap-3"
           >
             Visit project site
             <span aria-hidden="true">→</span>
